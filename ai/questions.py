@@ -70,7 +70,11 @@ def parsear_respuesta(respuesta):
                     "Respuesta correcta": respuesta_correcta_id
                 })
             pregunta = line.split(": ")[1].strip()
+<<<<<<< HEAD
             opciones = []  # Reiniciar opciones para cada nueva pregunta
+=======
+            opciones = []
+>>>>>>> 5c0f249d3d969676cd18eaef1f364720dc8ea9e9
             respuesta_correcta_id = None
         elif line.startswith("Opción "):
             opcion_id = int(line.split(": ")[0].split(" ")[1])
