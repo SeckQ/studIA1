@@ -16,12 +16,18 @@ def create_topic():
 
 
 @topics_bp.route('/topics/<int:user_id>', methods=['GET'])
-def get_topics(user_id):
+def get_topics_by_user(user_id):
     topics = Topic.query.filter_by(user_id=user_id).all()
     topic_list = []
     for topic in topics:
         topic_list.append({'topic_id': topic.topic_id, 'topic_name': topic.topic_name})
     return jsonify({'topics': topic_list})
+
+
+@topics_bp.route('/topics/<int:user_id>/<int:topic_id>', methods=['GET'])
+def get_topic(user_id, topic_id):
+    topic = Topic.query.filter_by(user_id=user_id, topic_id=topic_id).first_or_404()
+    return jsonify({'topic_id': topic.topic_id, 'topic_name': topic.topic_name})
 
 
 @topics_bp.route('/topics/<int:topic_id>', methods=['PUT'])

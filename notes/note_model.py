@@ -7,7 +7,7 @@ class Note(db.Model):
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     topic_id = db.Column(db.Integer, db.ForeignKey('topics.topic_id'), nullable=False)
-    type_id = db.Column(db.Integer, db.ForeignKey('note_types.type_id'), nullable=False)
+    note_type_id = db.Column(db.Integer, db.ForeignKey('note_types.type_id'), nullable=False)
     creation_date = db.Column(db.DateTime, nullable=False)
     last_modification_date = db.Column(db.DateTime, nullable=False)
     subject_id = db.Column(db.Integer, db.ForeignKey('subjects.subject_id'), nullable=False)

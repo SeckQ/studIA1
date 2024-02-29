@@ -61,6 +61,8 @@ def login():
 
     # Validamos las credenciales del usuario de prueba
     if username == 'admin' and password == 'admin':
+        print('True')
         return jsonify({'authenticated': True})
     else:
+        print('False')
         return jsonify({'authenticated': False})

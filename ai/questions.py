@@ -42,6 +42,7 @@ def generar_preguntas_respuestas():
     preguntas_y_respuestas_generadas = generar_preguntas_y_respuestas_ia(text, quantity, temperature)
 
     array_respuestas = procesar_respuestas(preguntas_y_respuestas_generadas)
+    print(preguntas_y_respuestas_generadas)
 
     return jsonify({'preguntas_y_respuestas': array_respuestas})
 
@@ -85,6 +86,6 @@ def parsear_respuesta(respuesta):
             "Opciones": opciones,
             "Respuesta correcta": respuesta_correcta_id
         })
-
+    print(preguntas_respuestas)
     return preguntas_respuestas
 

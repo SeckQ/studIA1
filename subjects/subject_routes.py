@@ -21,7 +21,7 @@ def get_subjects(user_id):
     subjects = Subject.query.filter_by(user_id=user_id).all()
     subject_list = []
     for subject in subjects:
-        subject_list.append({'subject_id': subject.subject_id, 'name': subject.type_name, 'professor': subject.professor, 'semester': subject.semester, 'active': subject.active})
+        subject_list.append({'subject_id': subject.subject_id, 'name': subject.name, 'professor': subject.professor, 'semester': subject.semester, 'active': subject.active})
     return jsonify({'subjects': subject_list})
 
 
@@ -45,3 +45,17 @@ def delete_subject(subject_id):
     return jsonify({'message': 'Subject deleted successfully'})
 
 
+@subjects_bp.route('/subjects/<int:user_id>/<int:subject_id>', methods=['GET'])
+def get_subject_by_id(user_id, subject_id):
+    subject = Subject.query.filter_by(user_id=user_id, subject_id=subject_id).first()
+    if subject:
+        subject_data = {
+            'subject_id': subject.subject_id,
+            'name': subject.name,
+            'professor': subject.professor,
+            'semester': subject.semester,
+            'active': subject.active
+        }
+        return jsonify({'subject': subject_data}), 200
+    else:
+        return jsonify({'message': 'Subject not found'}), 404
